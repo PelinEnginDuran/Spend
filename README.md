@@ -11,4 +11,4 @@ x ikonuna basıldığında silme işlemi yapılır ve aynı zamanda toplam harca
 
 Proje Gifini inceleyebilirsin
 
-[](/images/ezgif.com-video-to-gif%20(9).gif)
+![](/images/ezgif.com-video-to-gif%20(9).gif)
