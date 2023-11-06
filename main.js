@@ -5,6 +5,8 @@ const list = document.querySelector(".list")
 const totalInfo= document.querySelector("#total-info")
 const nameInput=document.getElementById("nameInput")
 const userName=localStorage.getItem("name")
+const statusCheck =document.getElementById("status-input")
+const selectFilter=document.getElementById("filter-select")
 
 nameInput.value=userName
 
@@ -13,6 +15,9 @@ nameInput.addEventListener("change",(e)=>{
 })
 formBtn.addEventListener("click", addExpense);
 list.addEventListener("click", handleClick)
+selectFilter.addEventListener("change", handleFilter)
+
+
 
 let toplam=0;
 
@@ -33,6 +38,9 @@ function addExpense(e) {
 
     const harcamaDiv = document.createElement("div");
     harcamaDiv.classList.add("expense");
+    if(statusCheck.checked){
+        harcamaDiv.classList.add("payed")
+    }
     harcamaDiv.innerHTML = `
     <h2>${expenseInput.value}</h2>
     <h2 id='value'>${fiyatInput.value}</h2>
@@ -62,5 +70,36 @@ function handleClick(e){
 
     }
 
+}
+
+function handleFilter(e){
+    const harcamaKartlari=list.childNodes
+
+const filterValue=e.target.value
+
+
+harcamaKartlari.forEach((harcamaKarti)=>{
+    switch(filterValue){
+        case "all":
+            harcamaKarti.style.display="flex";
+            break;
+        case "payed":
+            if(!harcamaKarti.classList.contains("payed")){
+                harcamaKarti.style.display="none";
+
+
+            } else{
+                harcamaKarti.style.display="flex";
+            }
+            break
+        case "not-payed":
+            if(harcamaKarti.classList.contains("payed")){
+                harcamaKarti.style.display="none";
+            } else{
+                harcamaKarti.style.display="flex";
+            }
+            break
+    }
+})
 }
 
